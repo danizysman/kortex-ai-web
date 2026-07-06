@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H1851LMRJE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H1851LMRJE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kortex: {
+                            bg: '#0f172a',
+                            blue: '#38bdf8',
+                            gray: '#e2e8f0',
+                            dark: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-kortex-bg text-kortex-gray font-sans antialiased selection:bg-kortex-blue selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <!-- Inline SVG Logo -->
+            <a href="/" class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="w-10 h-10">
+                    <rect width="400" height="400" fill="#0f172a" rx="40"/>
+                    <path d="M120 100 L160 100 L160 300 L120 300 Z" fill="#38bdf8"/>
+                    <path d="M160 200 L270 100 L310 100 L200 200 L310 300 L270 300 Z" fill="#e2e8f0"/>
+                    <circle cx="260" cy="200" r="14" fill="#38bdf8"/>
+                </svg>
+                <span class="text-xl font-bold tracking-tight text-white">Kortex Intelligence</span>
+            </a>
+        </div>
+        <a href="mailto:daniel@kortexintelligence.com" onclick="gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Email_Directly_Button' });" class="text-sm font-semibold text-kortex-gray hover:text-kortex-blue transition-colors">
+            daniel@kortexintelligence.com
+        </a>
+    </nav>
+
+    {{ block "main" . }}{{ end }}
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-slate-500 text-sm space-y-1">
+            <p><strong>Kortex AI LLC</strong> | Wyoming, US</p>
+            <p>Operating on US-aligned time zones (UTC -3)</p>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="mailto:daniel@kortexintelligence.com" class="text-slate-500 hover:text-kortex-blue transition-colors text-sm font-medium">
+                daniel@kortexintelligence.com
+            </a>
+            <a href="https://www.linkedin.com/in/dzysman/" target="_blank" class="text-slate-500 hover:text-kortex-blue transition-colors text-sm font-medium">
+                LinkedIn Profile
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
