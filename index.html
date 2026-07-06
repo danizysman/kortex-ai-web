@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H1851LMRJE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H1851LMRJE');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kortex AI | Bridging the Agentic Deployment Gap</title>
@@ -36,7 +44,7 @@
             </svg>
             <span class="text-xl font-bold tracking-tight text-white">Kortex AI</span>
         </div>
-        <a href="mailto:daniel@kortexintelligence.com" class="text-sm font-semibold text-kortex-gray hover:text-kortex-blue transition-colors">
+        <a href="mailto:daniel@kortexintelligence.com" onclick="gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Email_Directly_Button' });" class="text-sm font-semibold text-kortex-gray hover:text-kortex-blue transition-colors">
             daniel@kortexintelligence.com
         </a>
     </nav>
@@ -55,14 +63,14 @@
             </p>
         </div>
         <div class="flex gap-4">
-            <a href="mailto:daniel@kortexintelligence.com" class="bg-kortex-blue text-slate-900 px-6 py-3 rounded-md font-bold hover:bg-sky-400 transition-colors flex items-center gap-2">
+            <a href="mailto:daniel@kortexintelligence.com" onclick="gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Email_Directly_Button' });" class="bg-kortex-blue text-slate-900 px-6 py-3 rounded-md font-bold hover:bg-sky-400 transition-colors flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
                 Email Me Directly
             </a>
-            <a href="#case-studies" class="bg-kortex-dark text-white px-6 py-3 rounded-md font-bold hover:bg-slate-700 border border-slate-700 transition-colors flex items-center justify-center">
+            <a href="#case-studies" onclick="gtag('event', 'view_item', { 'event_category': 'Engagement', 'event_label': 'Proof_of_Work_Button' });" class="bg-kortex-dark text-white px-6 py-3 rounded-md font-bold hover:bg-slate-700 border border-slate-700 transition-colors flex items-center justify-center">
                 View Proof of Work
             </a>
         </div>
