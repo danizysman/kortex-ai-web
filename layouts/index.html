@@ -1,0 +1,137 @@
+{{ define "main" }}
+
+<!-- Hero Section -->
+<header class="max-w-4xl mx-auto px-6 pt-16 pb-20 border-b border-slate-800">
+    <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-8">
+        {{ .Params.hero.title | safeHTML }}
+    </h1>
+    <div class="space-y-6 text-xl text-slate-400 leading-relaxed max-w-3xl mb-10">
+        {{ range .Params.hero.paragraphs }}
+        <p>{{ . | safeHTML }}</p>
+        {{ end }}
+    </div>
+    <div class="flex gap-4">
+        <a href="mailto:daniel@kortexintelligence.com"
+            onclick="gtag('event', 'generate_lead', { 'event_category': 'Contact', 'event_label': 'Email_Directly_Button' });"
+            class="bg-kortex-blue text-slate-900 px-6 py-3 rounded-md font-bold hover:bg-sky-400 transition-colors flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            Email Me Directly
+        </a>
+        <a href="#case-studies"
+            onclick="gtag('event', 'view_item', { 'event_category': 'Engagement', 'event_label': 'Proof_of_Work_Button' });"
+            class="bg-kortex-dark text-white px-6 py-3 rounded-md font-bold hover:bg-slate-700 border border-slate-700 transition-colors flex items-center justify-center">
+            View Proof of Work
+        </a>
+    </div>
+</header>
+
+<!-- How We Help Section (Core Tracks) -->
+<section class="max-w-6xl mx-auto px-6 py-20 border-b border-slate-800">
+    <div class="mb-12 max-w-3xl">
+        <h2 class="text-3xl font-bold text-white mb-4">{{ .Params.how_we_help.title | safeHTML }}</h2>
+        <p class="text-slate-400 text-lg">
+            {{ .Params.how_we_help.subtitle | safeHTML }}
+        </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 mt-12">
+        {{ range .Params.how_we_help.tracks }}
+        <div class="bg-slate-800/30 p-8 rounded-xl border border-slate-800">
+            <div
+                class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center mb-6 border border-slate-700">
+                <span class="text-kortex-blue font-bold text-xl">{{ .number }}</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">{{ .title | safeHTML }}</h3>
+            <p class="text-slate-400 leading-relaxed text-sm">{{ .description | safeHTML }}</p>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Case Studies Section -->
+<section id="case-studies" class="max-w-5xl mx-auto px-6 py-20">
+    {{ $caseStudies := (where .Site.RegularPages "Section" "case-studies").ByWeight }}
+    {{ range $index, $element := $caseStudies }}
+    {{ if $index }}
+    <hr class="border-slate-800 mb-20">
+    {{ end }}
+    <div class="mb-24">
+        <div class="mb-8">
+            <span class="text-kortex-blue font-bold tracking-wider text-sm uppercase">Case Study {{ add $index 1
+                }}</span>
+            <h2 class="text-3xl font-bold text-white mt-2 mb-4">{{ .Title }}</h2>
+            <div class="bg-slate-800/50 border border-slate-700 p-6 rounded-lg text-slate-300">
+                <p><strong class="text-white">The Context:</strong> {{ .Params.context | safeHTML }}</p>
+                <p class="mt-2"><strong class="text-white">The Deliverable:</strong> {{ .Params.deliverable | safeHTML
+                    }}</p>
+            </div>
+        </div>
+
+        {{ if .Params.loom_url }}
+        <!-- Loom Embed -->
+        <div
+            class="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-700 shadow-2xl bg-slate-900 mb-10">
+            <iframe src="{{ .Params.loom_url }}" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
+        </div>
+        {{ end }}
+
+        {{ $hasImpact := isset .Params "impact" }}
+        {{ $gridClass := "grid md:grid-cols-2 gap-10" }}
+        {{ if $hasImpact }}
+        {{ $gridClass = "grid md:grid-cols-3 gap-8" }}
+        {{ end }}
+
+        <div class="{{ $gridClass }}">
+            <div>
+                <h4 class="text-white font-bold mb-2">The Challenge</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">{{ .Params.challenge | safeHTML }}</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-2">The Solution</h4>
+                <ul
+                    class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc pl-4 [&_strong]:text-slate-300 [&_strong]:font-bold">
+                    {{ range .Params.solution }}
+                    <li>{{ . | markdownify }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ if $hasImpact }}
+            <div>
+                <h4 class="text-white font-bold mb-2">The Impact</h4>
+                <ul class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc pl-4">
+                    {{ range .Params.impact }}
+                    <li>{{ . | safeHTML }}</li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</section>
+
+<!-- Lead Architect Section -->
+<section class="max-w-4xl mx-auto px-6 py-20 border-t border-slate-800">
+    <div class="flex flex-col md:flex-row gap-10 items-start">
+        <div
+            class="w-24 h-24 shrink-0 rounded-full bg-slate-800 border border-slate-700 overflow-hidden flex items-center justify-center">
+            <img src="{{ .Params.lead_architect.image | relURL }}" alt="{{ .Params.lead_architect.name }}"
+                class="w-full h-full object-cover">
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-white mb-2">{{ .Params.lead_architect.name }}</h2>
+            <h3 class="text-kortex-blue font-medium mb-4">{{ .Params.lead_architect.title }}</h3>
+            <div class="space-y-4 text-slate-400 leading-relaxed text-sm">
+                {{ range .Params.lead_architect.paragraphs }}
+                <p>{{ . | safeHTML }}</p>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ end }}
