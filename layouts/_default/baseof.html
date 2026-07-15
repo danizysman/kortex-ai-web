@@ -2,6 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <!-- Google tag (gtag.js) -->
+    {{ if hugo.IsProduction }}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H1851LMRJE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -9,6 +10,12 @@
         gtag('js', new Date());
         gtag('config', 'G-H1851LMRJE');
     </script>
+    {{ else }}
+    <script>
+        // Mock gtag for local development to prevent errors on click events
+        function gtag(){ console.log('Google Analytics Event (Mocked):', arguments); }
+    </script>
+    {{ end }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
